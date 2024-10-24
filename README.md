@@ -81,24 +81,24 @@ The Retail POS System is a Java-based application designed to facilitate point-o
 
 Here are some screenshots of the application in action:
 
-<img width="299" alt="Screenshot 2024-10-22 at 2 28 13 PM" src="src/main/resources/assets/welcome.png">
+<img width="299" alt="Screenshot 2024-10-22 at 2 28 13 PM" src="sourcecode/src/main/resources/assets/welcome.png">
 
-<img width="299" alt="Screenshot 2024-10-22 at 2 28 37 PM" src="src/main/resources/assets/welcome2.png">
+<img width="299" alt="Screenshot 2024-10-22 at 2 28 37 PM" src="sourcecode/src/main/resources/assets/welcome2.png">
 
-<img width="751" alt="Screenshot 2024-10-22 at 2 53 13 PM" src="src/main/resources/assets/posinterface.png">
+<img width="751" alt="Screenshot 2024-10-22 at 2 53 13 PM" src="sourcecode/src/main/resources/assets/posinterface.png">
 
-<img width="751" alt="Screenshot 2024-10-22 at 2 44 01 PM" src="src/main/resources/assets/customer.png">
+<img width="751" alt="Screenshot 2024-10-22 at 2 44 01 PM" src="sourcecode/src/main/resources/assets/customer.png">
 
-<img width="751" alt="Screenshot 2024-10-22 at 2 48 03 PM" src="src/main/resources/assets/inventory.png">
+<img width="751" alt="Screenshot 2024-10-22 at 2 48 03 PM" src="sourcecode/src/main/resources/assets/inventory.png">
 
-<img width="399" alt="Screenshot 2024-10-22 at 2 31 39 PM" src="src/main/resources/assets/item.png">
+<img width="399" alt="Screenshot 2024-10-22 at 2 31 39 PM" src="sourcecode/src/main/resources/assets/item.png">
 
-<img width="399" alt="Screenshot 2024-10-22 at 2 31 49 PM" src="src/main/resources/assets/itemadded.png">
+<img width="399" alt="Screenshot 2024-10-22 at 2 31 49 PM" src="sourcecode/src/main/resources/assets/itemadded.png">
 
-<img width="299" alt="Screenshot 2024-10-22 at 2 29 42 PM" src="src/main/resources/assets/pinpad.png">
+<img width="299" alt="Screenshot 2024-10-22 at 2 29 42 PM" src="sourcecode/src/main/resources/assets/pinpad.png">
 
-<img width="299" alt="Screenshot 2024-10-22 at 2 30 06 PM" src="src/main/resources/assets/checkout.png">
+<img width="299" alt="Screenshot 2024-10-22 at 2 30 06 PM" src="sourcecode/src/main/resources/assets/checkout.png">
 
-<img width="299" alt="Screenshot 2024-10-22 at 2 33 27 PM" src="src/main/resources/assets/logout.png">
+<img width="299" alt="Screenshot 2024-10-22 at 2 33 27 PM" src="sourcecode/src/main/resources/assets/logout.png">
 
 > The system will be updated further....
