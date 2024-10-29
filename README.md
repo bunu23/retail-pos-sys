@@ -75,7 +75,7 @@ The Retail POS System is a Java-based application designed to facilitate point-o
 - **Swing**: For creating the graphical user interface (GUI).
 - **MySQL**: Database management system to store user, item, and transaction data.
 - **BCrypt**: For password hashing and secure storage.
-- **Stripe API**: For payment processing (to be implemented).
+- **Stripe API**: For payment processing .
 
 ## Screenshots
 
