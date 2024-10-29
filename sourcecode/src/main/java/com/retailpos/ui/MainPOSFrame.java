@@ -19,22 +19,20 @@ public class MainPOSFrame extends JFrame {
     private JButton inventoryButton;
     private String userRole;
 
-
-
-
     public MainPOSFrame(String role) {
-        this.userRole=role;
-        System.out.println("User role set to: "+userRole);
+        this.userRole = role;
+        System.out.println("User role set to: " + userRole);
 
         if (!SessionManager.isSessionValid()) {
             JOptionPane.showMessageDialog(this, "Session expired. Please log in again.");
             System.exit(0);
         }
 
-        transactionService = new TransactionService();  // Transaction management
+        transactionService = new TransactionService();
         initUI();
 
     }
+
     private void initUI() {
         // Set up the main frame
         setTitle("POS Interface");
@@ -43,7 +41,7 @@ public class MainPOSFrame extends JFrame {
         setLayout(new BorderLayout());
 
         // Set background color
-        getContentPane().setBackground(new Color(255, 255, 255)); //Background for buttom
+        getContentPane().setBackground(new Color(255, 255, 255));
 
         // Initialize UI components with custom fonts and colors
         itemListArea = new JTextArea(10, 40);
@@ -89,12 +87,10 @@ public class MainPOSFrame extends JFrame {
         customerButton.addActionListener(e -> openCustomerManagement());
         inventoryButton.addActionListener(e -> openInventoryManagement());
 
-        // Bottom panel for total label and logout button
         JPanel bottomPanel = new JPanel();
-        bottomPanel.setLayout(new BorderLayout()); // Use BorderLayout for left and right alignment
+        bottomPanel.setLayout(new BorderLayout());
         bottomPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Add padding
-        bottomPanel.setBackground(new Color(28, 26, 26)); // Match frame background
-
+        bottomPanel.setBackground(new Color(28, 26, 26));
         // Logout Button with hover effect
         JButton logoutButton = new JButton("Logout");
         logoutButton.setFont(new Font("SansSerif", Font.BOLD, 18));
@@ -107,25 +103,21 @@ public class MainPOSFrame extends JFrame {
         // Add a hover effect for the logout button
         logoutButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                logoutButton.setBackground(new Color(231, 76, 60)); // Slightly lighter red on hover
+                logoutButton.setBackground(new Color(231, 76, 60));
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                logoutButton.setBackground(new Color(192, 57, 43)); // Original red on exit
+                logoutButton.setBackground(new Color(192, 57, 43));
             }
         });
 
-        // Logout action
         logoutButton.addActionListener(e -> handleLogout());
 
-        // Add totalLabel to the left (WEST) and logoutButton to the right (EAST)
         bottomPanel.add(totalLabel, BorderLayout.WEST);
         bottomPanel.add(logoutButton, BorderLayout.EAST);
 
-        // Add the bottomPanel to the main frame
         add(bottomPanel, BorderLayout.SOUTH);
     }
-
 
     private void handleLogout() {
         int confirm = JOptionPane.showConfirmDialog(this,
@@ -133,8 +125,8 @@ public class MainPOSFrame extends JFrame {
                 "Logout Confirmation", JOptionPane.YES_NO_OPTION);
 
         if (confirm == JOptionPane.YES_OPTION) {
-            SessionManager.logout();  // Clear session
-            dispose();  // Close the current window
+            SessionManager.logout(); // Clear session
+            dispose(); // Close the current window
 
             // Optionally redirect to the login page
             SwingUtilities.invokeLater(() -> {
@@ -143,22 +135,16 @@ public class MainPOSFrame extends JFrame {
         }
     }
 
-
-
-
-
     // Method to create styled buttons
     private JButton createStyledButton(String text, Color bgColor, Color fgColor) {
         JButton button = new JButton(text);
         button.setFont(new Font("SansSerif", Font.BOLD, 14));
         button.setBackground(bgColor);
         button.setForeground(fgColor);
-        button.setFocusPainted(false);  // Remove focus border
-        button.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));  // Button border
+        button.setFocusPainted(false); // Remove focus border
+        button.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY)); // Button border
         return button;
     }
-
-
 
     private void openItemSelection() {
         new SelectItemPanel(transactionService, itemListArea, totalLabel).setVisible(true);
@@ -176,16 +162,16 @@ public class MainPOSFrame extends JFrame {
         new CheckoutPanel(transactionService.calculateTotal()).setVisible(true);
     }
 
-//    public static void main(String[] args) {
-//        SwingUtilities.invokeLater(() -> {
-//            MainPOSFrame posFrame = new MainPOSFrame();
-//            posFrame.setVisible(true);
-//        });
-//    }
+    // public static void main(String[] args) {
+    // SwingUtilities.invokeLater(() -> {
+    // MainPOSFrame posFrame = new MainPOSFrame();
+    // posFrame.setVisible(true);
+    // });
+    // }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            MainPOSFrame posFrame = new MainPOSFrame("ADMIN");  // Hardcoded for testing, replace with dynamic role
+            MainPOSFrame posFrame = new MainPOSFrame("ADMIN"); // Hardcoded for testing, replace with dynamic role
             posFrame.setVisible(true);
         });
     }

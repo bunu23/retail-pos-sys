@@ -11,15 +11,14 @@ import java.util.List;
 
 public class DatabaseManager {
 
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/pos-final-version-db";
-    private static final String USER = "root";
-    private static final String PASSWORD = "pranam123";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/";
+    private static final String USER = "";
+    private static final String PASSWORD = "";
 
     // Establishing a connection to the MySQL database
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(DB_URL, USER, PASSWORD);
     }
-
 
     // Save transaction data to the database
     public static void saveTransaction(Transaction transaction) throws SQLException {
@@ -51,8 +50,7 @@ public class DatabaseManager {
                         rs.getInt("id"),
                         rs.getDouble("amount"),
                         rs.getString("status"),
-                        rs.getTimestamp("created_at").toLocalDateTime()
-                );
+                        rs.getTimestamp("created_at").toLocalDateTime());
                 return transaction;
             }
         }
@@ -69,14 +67,12 @@ public class DatabaseManager {
                 Item item = new Item(
                         rs.getString("name"),
                         rs.getString("sku"),
-                        rs.getDouble("price")
-                );
+                        rs.getDouble("price"));
                 items.add(item);
             }
         }
         return items;
     }
-
 
     // Add a new customer
     public static void addCustomer(Customer customer) throws SQLException {
@@ -102,8 +98,7 @@ public class DatabaseManager {
                         rs.getString("name"),
                         rs.getString("email"),
                         rs.getString("phone"),
-                        rs.getString("address")
-                );
+                        rs.getString("address"));
                 customers.add(customer);
             }
         }
@@ -132,36 +127,18 @@ public class DatabaseManager {
                 InventoryItem item = new InventoryItem(
                         rs.getInt("id"),
                         rs.getInt("item_id"),
-                        rs.getInt("quantity")
-                );
+                        rs.getInt("quantity"));
                 inventory.add(item);
             }
         }
         return inventory;
     }
 
-//    public static String authenticateUser(String username, String password) throws SQLException {
-//        String query = "SELECT role FROM users WHERE username = ? AND password = ?";
-//        try (Connection conn = getConnection();
-//             PreparedStatement stmt = conn.prepareStatement(query)) {
-//            stmt.setString(1, username);
-//            stmt.setString(2, password);
-//            ResultSet rs = stmt.executeQuery();
-//
-//            if (rs.next()) {
-//                return rs.getString("role");  // Correctly return role
-//            } else {
-//                return null;  // Invalid credentials
-//            }
-//        }
-//    }
-
-
     public static String authenticateUser(String username, String password) throws SQLException {
         String query = "SELECT password, role FROM users WHERE username = ?";
 
         try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
+                PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, username);
             ResultSet rs = stmt.executeQuery();
 
@@ -177,11 +154,11 @@ public class DatabaseManager {
 
                 // Compare hashed password
                 if (BCrypt.checkpw(password, storedPassword)) {
-                    return role;  // Authentication successful, return role
+                    return role; // Authentication successful, return role
                 }
             }
         }
-        return null;  // Invalid credentials
+        return null; // Invalid credentials
     }
 
     // Helper method to check if the password is hashed
@@ -195,7 +172,7 @@ public class DatabaseManager {
         String query = "UPDATE users SET password = ? WHERE username = ?";
 
         try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
+                PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, hashedPassword);
             stmt.setString(2, username);
             stmt.executeUpdate();
@@ -207,22 +184,20 @@ public class DatabaseManager {
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
-
-
     // Method to retrieve the user's role by their username
     public static String getRoleByUsername(String username) throws SQLException {
         String query = "SELECT role FROM users WHERE username = ?";
 
         try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
+                PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, username);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                return rs.getString("role");  // Return the user's role
+                return rs.getString("role"); // Return the user's role
             }
         }
-        return null;  // No user found
+        return null; // No user found
     }
 
     // Method to verify the Remember Me token
@@ -230,18 +205,15 @@ public class DatabaseManager {
         String query = "SELECT remember_me_token FROM users WHERE username = ?";
 
         try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
+                PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, username);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
                 String storedToken = rs.getString("remember_me_token");
-                return storedToken != null && storedToken.equals(token);  // Check if token matches
+                return storedToken != null && storedToken.equals(token); // Check if token matches
             }
         }
-        return false;  // Invalid token or user not found
+        return false; // Invalid token or user not found
     }
 }
-
-
-

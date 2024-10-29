@@ -17,13 +17,13 @@ public class TransactionService {
         items.add(item);
     }
 
-
     public double calculateTotal() {
         return items.stream().mapToDouble(Item::getPrice).sum();
     }
+
     public void completeTransaction(double totalAmount, String status) throws SQLException {
         Transaction transaction = new Transaction(0, totalAmount, status, LocalDateTime.now());
-        DatabaseManager.saveTransaction(transaction);  // Save transaction to database
+        DatabaseManager.saveTransaction(transaction); // Save transaction to database
     }
 
 }

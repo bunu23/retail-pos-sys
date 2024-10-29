@@ -15,6 +15,7 @@ public class CheckoutPanel extends JFrame {
         this.totalAmount = totalAmount;
         initUI();
     }
+
     private void initUI() {
         setTitle("Checkout");
         setSize(400, 200);
@@ -37,11 +38,6 @@ public class CheckoutPanel extends JFrame {
 
     private void openPinpad() {
         new PinpadFrame(totalAmount).setVisible(true);
-        dispose();  // Close the checkout window after proceeding to payment
+        dispose();
     }
 }
-
-
-
-
-
